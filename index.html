@@ -2,423 +2,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Games</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Games</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
-body {
-    background: #101116;
-    color: #e8e8eb;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-/* HEADER */
-
-header {
-    height: 62px;
-    background: #191a20;
-    border-bottom: 1px solid #303139;
-    display: flex;
-    align-items: center;
-    padding: 0 5%;
-    gap: 35px;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    white-space: nowrap;
-    color: #fff;
-}
-
-.logo span {
-    color: #e5b84b;
-}
-
-nav {
-    display: flex;
-    gap: 22px;
-}
-
-nav a {
-    color: #aaaab2;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-nav a:hover,
-nav a.active {
-    color: #e5b84b;
-}
-
-.search {
-    margin-left: auto;
-    width: 260px;
-    padding: 9px 12px;
-    background: #101116;
-    border: 1px solid #383941;
-    color: white;
-    outline: none;
-}
-
-.search:focus {
-    border-color: #c49a3c;
-}
-
-/* PAGE */
-
-main {
-    max-width: 1450px;
-    margin: auto;
-    padding: 30px 5%;
-}
-
-.page-heading {
-    margin-bottom: 25px;
-}
-
-.page-heading h1 {
-    font-size: 25px;
-    margin-bottom: 7px;
-}
-
-.page-heading p {
-    color: #999aa4;
-    font-size: 13px;
-}
-
-/* CATEGORY BAR */
-
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 28px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #303139;
-}
-
-.category {
-    background: #202127;
-    border: 1px solid #383941;
-    color: #bcbcc4;
-    padding: 8px 15px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.category:hover,
-.category.active {
-    background: #3a3020;
-    border-color: #a98436;
-    color: #edc45e;
-}
-
-/* SECTION */
-
-.section-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-}
-
-.section-heading h2 {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.section-heading span {
-    color: #858690;
-    font-size: 12px;
-}
-
-/* GAME GRID */
-
-.games {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.game {
-    background: #1c1d23;
-    border: 1px solid #303139;
-    cursor: default;
-    min-width: 0;
-    transition: border-color 0.15s;
-}
-
-.game:hover {
-    border-color: #a98436;
-}
-
-.thumbnail {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: #292a32;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #777984;
-    font-size: 12px;
-    letter-spacing: 1px;
-    overflow: hidden;
-}
-
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.game-info {
-    padding: 11px 12px 13px;
-}
-
-.game h3 {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-.game p {
-    font-size: 11px;
-    color: #92939d;
-}
-
-.tag {
-    display: inline-block;
-    margin-top: 10px;
-    color: #d5b45e;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* EMPTY RESULTS */
-
-.empty {
-    display: none;
-    color: #92939d;
-    padding: 35px 0;
-    text-align: center;
-}
-
-/* FOOTER */
-
-footer {
-    margin-top: 55px;
-    padding: 24px 5%;
-    background: #191a20;
-    border-top: 1px solid #303139;
-    color: #777984;
-    font-size: 11px;
-    text-align: center;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 1000px) {
-    .games {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    header {
-        height: auto;
-        min-height: 62px;
-        padding: 14px 4%;
-        flex-wrap: wrap;
-        gap: 15px;
+    :root {
+      --background: #151216;
+      --panel: #211c23;
+      --panel-light: #2c252e;
+      --pink: #ed78ad;
+      --gold: #e9bd55;
+      --text: #fff5fa;
+      --muted: #b9aab5;
+      --border: #443743;
     }
 
-    nav {
-        order: 3;
-        width: 100%;
-        gap: 20px;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, #382033 0%, transparent 38%),
+        var(--background);
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      height: 76px;
+      margin: 18px auto 0;
+      width: min(1450px, calc(100% - 40px));
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(35, 29, 38, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--pink);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .top-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
+      transition: color 0.2s;
+    }
+
+    .top-links a:hover {
+      color: var(--pink);
+    }
+
+    .page {
+      width: min(1450px, calc(100% - 40px));
+      margin: 32px auto 60px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 25px;
+    }
+
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      height: fit-content;
+      position: sticky;
+      top: 112px;
+    }
+
+    .sidebar h2 {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin: 4px 0 15px;
+      text-transform: uppercase;
     }
 
     .search {
-        width: 45%;
+      width: 100%;
+      padding: 12px 14px;
+      background: #171319;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      margin-bottom: 24px;
     }
 
-    main {
-        padding: 25px 4%;
+    .search:focus {
+      border-color: var(--pink);
     }
 
-    .games {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-    }
-}
-
-@media (max-width: 450px) {
-    .games {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .page-heading h1 {
-        font-size: 21px;
+    .category {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px;
+      color: var(--muted);
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      transition: 0.2s;
     }
-}
-</style>
+
+    .category:hover {
+      background: var(--panel-light);
+      color: white;
+    }
+
+    .category.active {
+      background: #512b43;
+      color: white;
+      border-color: #854667;
+    }
+
+    .category-icon {
+      font-size: 20px;
+      width: 25px;
+      text-align: center;
+    }
+
+    .category-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .category-text strong {
+      font-size: 14px;
+    }
+
+    .category-text small {
+      font-size: 11px;
+      color: #a994a5;
+      margin-top: 3px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .hero {
+      min-height: 220px;
+      padding: 32px 38px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 85% 15%, #ffb4d2 0, transparent 28%),
+        linear-gradient(115deg, #8f3268, #d75e9b 60%, #ef91ba);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 35px #0004;
+    }
+
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      right: 45px;
+      bottom: -65px;
+      font-size: 230px;
+      color: #ffffff19;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #ffe0ed;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 4vw, 43px);
+      line-height: 1.12;
+      max-width: 750px;
+      margin: 0;
+      font-weight: 900;
+      text-shadow: 0 3px 10px #0002;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      color: #ffe6f0;
+      margin: 13px 0 0;
+      font-size: 14px;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 34px 2px 17px;
+      gap: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: 900;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-template-rows: 190px 190px;
+      gap: 16px;
+    }
+
+    .game-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+      min-height: 160px;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink);
+    }
+
+    .game-card.featured {
+      grid-row: span 2;
+    }
+
+    .game-art {
+      height: 100%;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      background:
+        radial-gradient(circle at 50% 35%, #ffffff12, transparent 45%),
+        linear-gradient(145deg, #44303f, #241d29);
+      color: #e7b6cf;
+    }
+
+    .game-card:nth-child(2) .game-art {
+      background: linear-gradient(145deg, #40334e, #292034);
+    }
+
+    .game-card:nth-child(3) .game-art {
+      background: linear-gradient(145deg, #49333c, #2a2029);
+    }
+
+    .game-card:nth-child(4) .game-art {
+      background: linear-gradient(145deg, #373b4d, #222432);
+    }
+
+    .placeholder-icon {
+      font-size: 45px;
+      opacity: 0.8;
+    }
+
+    .placeholder-label {
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
+
+    .game-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 35px 16px 15px;
+      background: linear-gradient(transparent, #100d14ef);
+    }
+
+    .game-info h3 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .game-info p {
+      margin: 4px 0 0;
+      color: #d0bdca;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .game-tag {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      background: #171219c9;
+      color: var(--pink);
+      border: 1px solid #8b496b;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+    }
+
+    .empty-message {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 35px;
+      margin-top: 15px;
+    }
+
+    footer {
+      width: min(1450px, calc(100% - 40px));
+      margin: 0 auto 30px;
+      padding: 20px 5px;
+      border-top: 1px solid var(--border);
+      color: #8f7d8b;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .category-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .game-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 210px 180px 180px;
+      }
+
+      .game-card.featured {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .top-links {
+        gap: 12px;
+      }
+
+      .top-links a {
+        font-size: 12px;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      .category-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding: 27px 23px;
+      }
+
+      .game-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 180px);
+      }
+
+      .game-card.featured {
+        grid-column: auto;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">GOLD <span>GAMES</span></div>
+  <header class="topbar">
+    <a class="logo" href="#">GOLD <span>GAMES</span></a>
 
-    <nav>
-        <a href="#" class="active">Games</a>
-        <a href="#categories">Categories</a>
-        <a href="#about">About</a>
+    <nav class="top-links">
+      <a href="#">Home</a>
+      <a href="#games">Games</a>
+      <a href="#categories">Categories</a>
     </nav>
+  </header>
 
-    <input
+  <div class="page">
+
+    <aside class="sidebar" id="categories">
+      <h2>Find something</h2>
+
+      <input
         class="search"
-        id="search"
+        id="searchInput"
         type="text"
         placeholder="Search games..."
-        aria-label="Search games"
-    >
-</header>
+        autocomplete="off"
+      >
 
-<main>
+      <h2>Categories</h2>
 
-    <div class="page-heading">
-        <h1>Games Library</h1>
-        <p>Browse the collection and find something to play.</p>
-    </div>
+      <div class="category-list">
+        <button class="category active" data-category="all">
+          <span class="category-icon">🏠</span>
+          <span class="category-text">
+            <strong>All Games</strong>
+            <small>Everything in one place</small>
+          </span>
+        </button>
 
-    <div class="categories" id="categories">
-        <button class="category active" data-category="all">All Games</button>
-        <button class="category" data-category="arcade">Arcade</button>
-        <button class="category" data-category="platformer">Platformers</button>
-        <button class="category" data-category="horror">Horror</button>
-        <button class="category" data-category="puzzle">Puzzle</button>
-        <button class="category" data-category="action">Action</button>
-    </div>
+        <button class="category" data-category="arcade">
+          <span class="category-icon">🕹️</span>
+          <span class="category-text">
+            <strong>Arcade</strong>
+            <small>Quick and chaotic</small>
+          </span>
+        </button>
 
-    <div class="section-heading">
-        <h2>All Games</h2>
-        <span id="game-count">4 games</span>
-    </div>
+        <button class="category" data-category="platformer">
+          <span class="category-icon">🏃</span>
+          <span class="category-text">
+            <strong>Platformers</strong>
+            <small>Jump around</small>
+          </span>
+        </button>
 
-    <div class="games" id="games">
+        <button class="category" data-category="horror">
+          <span class="category-icon">👻</span>
+          <span class="category-text">
+            <strong>Horror</strong>
+            <small>Bad decisions at night</small>
+          </span>
+        </button>
 
-        <div class="game"
-             data-name="coming soon"
-             data-category="arcade">
-            <div class="thumbnail">GAME ARTWORK</div>
-            <div class="game-info">
-                <h3>Coming Soon</h3>
-                <p>New games are on the way.</p>
-                <span class="tag">Arcade</span>
-            </div>
-        </div>
+        <button class="category" data-category="puzzle">
+          <span class="category-icon">🧩</span>
+          <span class="category-text">
+            <strong>Puzzle</strong>
+            <small>Use your brain</small>
+          </span>
+        </button>
 
-        <div class="game"
-             data-name="coming soon"
-             data-category="platformer">
-            <div class="thumbnail">GAME ARTWORK</div>
-            <div class="game-info">
-                <h3>Coming Soon</h3>
-                <p>New games are on the way.</p>
-                <span class="tag">Platformer</span>
-            </div>
-        </div>
+        <button class="category" data-category="action">
+          <span class="category-icon">⚔️</span>
+          <span class="category-text">
+            <strong>Action</strong>
+            <small>Get moving</small>
+          </span>
+        </button>
+      </div>
+    </aside>
 
-        <div class="game"
-             data-name="coming soon"
-             data-category="horror">
-            <div class="thumbnail">GAME ARTWORK</div>
-            <div class="game-info">
-                <h3>Coming Soon</h3>
-                <p>New games are on the way.</p>
-                <span class="tag">Horror</span>
-            </div>
-        </div>
+    <main class="main">
 
-        <div class="game"
-             data-name="coming soon"
-             data-category="puzzle">
-            <div class="thumbnail">GAME ARTWORK</div>
-            <div class="game-info">
-                <h3>Coming Soon</h3>
-                <p>New games are on the way.</p>
-                <span class="tag">Puzzle</span>
-            </div>
-        </div>
+      <section class="hero">
+        <div class="hero-tag">A message from Gold Games</div>
+        <h1 id="randomQuote">Loading today's message...</h1>
+        <p>Gold Games: not affiliated with the burger allegations.</p>
+      </section>
 
-    </div>
+      <div class="section-heading" id="games">
+        <h2>Games</h2>
+        <span id="gameCount">4 games</span>
+      </div>
 
-    <p class="empty" id="empty">No games found.</p>
+      <section class="game-grid" id="gameGrid">
 
-</main>
+        <article class="game-card featured" data-category="arcade">
+          <div class="game-art">
+            <span class="placeholder-icon">🎮</span>
+            <span class="placeholder-label">COMING SOON</span>
+          </div>
+          <span class="game-tag">Arcade</span>
+          <div class="game-info">
+            <h3>Coming Soon</h3>
+            <p>Something is on the way.</p>
+          </div>
+        </article>
 
-<footer id="about">
-    GOLD GAMES © 2026 · All rights reserved.
-</footer>
+        <article class="game-card" data-category="platformer">
+          <div class="game-art">
+            <span class="placeholder-icon">⭐</span>
+            <span class="placeholder-label">COMING SOON</span>
+          </div>
+          <span class="game-tag">Platformer</span>
+          <div class="game-info">
+            <h3>Coming Soon</h3>
+            <p>Stay tuned.</p>
+          </div>
+        </article>
 
-<script>
-const search = document.getElementById("search");
-const gameCards = document.querySelectorAll(".game");
-const categoryButtons = document.querySelectorAll(".category");
-const empty = document.getElementById("empty");
-const gameCount = document.getElementById("game-count");
+        <article class="game-card" data-category="horror">
+          <div class="game-art">
+            <span class="placeholder-icon">👁️</span>
+            <span class="placeholder-label">COMING SOON</span>
+          </div>
+          <span class="game-tag">Horror</span>
+          <div class="game-info">
+            <h3>Coming Soon</h3>
+            <p>Hopefully worth the wait.</p>
+          </div>
+        </article>
 
-let selectedCategory = "all";
+        <article class="game-card" data-category="puzzle">
+          <div class="game-art">
+            <span class="placeholder-icon">🧩</span>
+            <span class="placeholder-label">COMING SOON</span>
+          </div>
+          <span class="game-tag">Puzzle</span>
+          <div class="game-info">
+            <h3>Coming Soon</h3>
+            <p>More games eventually.</p>
+          </div>
+        </article>
 
-function filterGames() {
-    const query = search.value.toLowerCase().trim();
-    let visible = 0;
+      </section>
 
-    gameCards.forEach(game => {
-        const matchesName =
-            game.dataset.name.includes(query);
+      <div class="empty-message" id="emptyMessage">
+        No games found. Even Dandy's World has more content than this search.
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>© 2026 Gold Games. All rights reserved.</span>
+    <span>Independently operated. Unlike Dandy's World, hopefully.</span>
+  </footer>
+
+  <script>
+    // Random Dandy's World slander.
+    const quotes = [
+      "Dandy's World is actually so burger.",
+      "Dandy's World fans try not to defend buns challenge (impossible).",
+      "Happy birthday to everyone except Dandy's World.",
+      "Imagine willingly being a Dandy's World fan.",
+      "Dandy's World is NOT beating the burger allegations.",
+      "Buns game. Buns community. Buns everything.",
+      "Dandy's World fans when someone plays a better game.",
+      "Calling Dandy's World mid would be a compliment.",
+      "Dandy's World is genuinely a generational downgrade.",
+      "Being a Dandy's World fan is certainly a choice.",
+      "Dandy's World fans explaining why buns is peak fiction.",
+      "Gold Games has standards. Dandy's World doesn't.",
+      "Dandy's World is so burger it's unbelievable.",
+      "Imagine defending Dandy's World in 2026.",
+      "Buns upon buns upon buns. That's Dandy's World."
+    ];
+
+    const randomQuote = document.getElementById("randomQuote");
+
+    randomQuote.textContent =
+      quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Search and category filtering.
+    const searchInput = document.getElementById("searchInput");
+    const categoryButtons = document.querySelectorAll(".category");
+    const gameCards = document.querySelectorAll(".game-card");
+    const gameCount = document.getElementById("gameCount");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    let activeCategory = "all";
+
+    function filterGames() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      gameCards.forEach(card => {
+        const category = card.dataset.category;
+        const text = card.textContent.toLowerCase();
 
         const matchesCategory =
-            selectedCategory === "all" ||
-            game.dataset.category === selectedCategory;
+          activeCategory === "all" || category === activeCategory;
 
-        const show = matchesName && matchesCategory;
+        const matchesSearch = text.includes(searchTerm);
 
-        game.style.display = show ? "" : "none";
+        const visible = matchesCategory && matchesSearch;
 
-        if (show) visible++;
-    });
+        card.style.display = visible ? "" : "none";
 
-    empty.style.display = visible === 0 ? "block" : "none";
-    gameCount.textContent =
-        visible + (visible === 1 ? " game" : " games");
-}
+        if (visible) {
+          visibleCount++;
+        }
+      });
 
-search.addEventListener("input", filterGames);
+      gameCount.textContent =
+        visibleCount + (visibleCount === 1 ? " game" : " games");
 
-categoryButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        categoryButtons.forEach(b =>
-            b.classList.remove("active")
+      emptyMessage.style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        categoryButtons.forEach(item =>
+          item.classList.remove("active")
         );
 
         button.classList.add("active");
-        selectedCategory = button.dataset.category;
+        activeCategory = button.dataset.category;
 
         filterGames();
+      });
     });
-});
-</script>
+
+    searchInput.addEventListener("input", filterGames);
+
+    filterGames();
+  </script>
 
 </body>
 </html>
